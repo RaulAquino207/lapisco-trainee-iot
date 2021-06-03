@@ -1,16 +1,22 @@
-# This is a sample Python script.
+import json
+# from firebase import firebase
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from random import randint
+import time
 
+cont = 0
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+while (True):
+    temp = str(randint(25,31))
+    rpm = str(randint(50,60))
+    vel = str(randint(40,60))
+    lux = str(randint(0,10))
 
+    # print(temp, rpm, vel, lux)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    json_data = {'temp' : temp, 'rpm' : rpm, 'vel' : vel, 'lux' : lux}
+    json_data = json.dumps(json_data, indent=4, sort_keys=True)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    parsed_json = (json.loads(json_data))
+    print(json_data)
+
