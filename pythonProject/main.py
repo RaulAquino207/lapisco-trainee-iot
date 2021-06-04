@@ -1,5 +1,5 @@
 import json
-# from firebase import firebase
+from firebase import firebase
 
 from random import randint
 import time
@@ -15,8 +15,19 @@ while (True):
     # print(temp, rpm, vel, lux)
 
     json_data = {'temp' : temp, 'rpm' : rpm, 'vel' : vel, 'lux' : lux}
-    json_data = json.dumps(json_data, indent=4, sort_keys=True)
+    json_data = json.dumps(json_data, indent=4, sort_keys=False)
 
     parsed_json = (json.loads(json_data))
     print(json_data)
 
+    if (cont == 0):
+        firebase = firebase.FirebaseApplication('https://lapisco-trainee-iot-default-rtdb.firebaseio.com/', authentication=None)
+        print(firebase)
+        result = firebase.post('/lapisco-trainee-iot-default-rtdb', parsed_json)
+    #     print(result)
+    #
+    else:
+        firebase.put('/lapisco-trainee-iot-default-rtdb', result['name'], parsed_json)
+
+    time.sleep(2)
+    cont += 1
