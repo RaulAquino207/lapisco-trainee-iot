@@ -23,11 +23,11 @@ while (True):
     if (cont == 0):
         firebase = firebase.FirebaseApplication('https://lapisco-trainee-iot-default-rtdb.firebaseio.com/', authentication=None)
         print(firebase)
-        result = firebase.post('/lapisco-trainee-iot-default-rtdb', parsed_json)
+        result = firebase.post('/', parsed_json)
     #     print(result)
     #
     else:
-        firebase.put('/lapisco-trainee-iot-default-rtdb', result['name'], parsed_json)
+        firebase.put('/', result['name'], parsed_json)
 
     time.sleep(2)
     cont += 1
